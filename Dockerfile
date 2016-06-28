@@ -15,6 +15,9 @@ RUN tar xf jboss-as-$JBOSS_VERSION.tar.gz \
     && mv jboss-as-$JBOSS_VERSION $JBOSS_HOME \
     && rm jboss-as-$JBOSS_VERSION.tar.gz
 
+# Delete *.bat (Windows)
+RUN rm $JBOSS_HOME/bin/*.bat
+
 EXPOSE 8080
 
 CMD ["/opt/jboss/jboss-as/bin/standalone.sh", "-b", "0.0.0.0"]
