@@ -24,6 +24,9 @@ VOLUME $JBOSS_HOME/standalone/log
 # TODO: Add volume for config files ?
 # VOLUME ...
 
+# Ensure signals are forwarded to the JVM process correctly for graceful shutdown (process in foreground or background)
+ENV LAUNCH_JBOSS_IN_BACKGROUND true
+
 EXPOSE 8080
 EXPOSE 9990
 
