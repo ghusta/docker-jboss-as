@@ -1,17 +1,17 @@
 # Inspired from jboss/wildfly
 FROM jboss/base-jdk:7
-MAINTAINER Guillaume Husta
+MAINTAINER Guillaume Husta (@ghusta)
 
+ENV JBOSS_MAJOR_MINOR_VERSION 7.1
 ENV JBOSS_VERSION 7.1.1.Final
-# TODO: sha1 sum
-ENV JBOSS_SHA1 xxx
+ENV JBOSS_SHA1 fcec1002dce22d3281cc08d18d0ce72006868b6f
+ENV JBOSS_SHA256 88fd3fdac4f7951cee3396eff3d70e8166c3319de82d77374a24e3b422e0b2ad
 ENV JBOSS_HOME /opt/jboss/jboss-as
 
 WORKDIR /opt/jboss
-
-# Local archive for the moment...
-COPY jboss-as-$JBOSS_VERSION.tar.gz .
-RUN tar xf jboss-as-$JBOSS_VERSION.tar.gz \
+RUN curl -O https://download.jboss.org/jbossas/$JBOSS_MAJOR_MINOR_VERSION/jboss-as-$JBOSS_VERSION/jboss-as-$JBOSS_VERSION.tar.gz \
+    && sha256sum jboss-as-$JBOSS_VERSION.tar.gz | grep $JBOSS_SHA256 \
+    && tar xf jboss-as-$JBOSS_VERSION.tar.gz \
     && mv jboss-as-$JBOSS_VERSION $JBOSS_HOME \
     && rm jboss-as-$JBOSS_VERSION.tar.gz
 
