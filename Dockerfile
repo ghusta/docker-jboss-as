@@ -18,7 +18,8 @@ RUN curl -O https://download.jboss.org/jbossas/$JBOSS_MAJOR_MINOR_VERSION/jboss-
 # Delete *.bat (Windows)
 RUN rm $JBOSS_HOME/bin/*.bat
 
-# TODO: Add volume for log files
+# Add volume for log files
+# If having permission denied, see here : https://goldmann.pl/blog/2014/07/18/logging-with-the-wildfly-docker-image/#_permission_denied
 VOLUME $JBOSS_HOME/standalone/log
 
 # TODO: Add volume for config files ?
